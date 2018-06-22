@@ -2,12 +2,12 @@ const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const cors = require("cors");
 const expressValidator = require("express-validator");
 const session = require("express-session");
 const passport = require("passport");
 const config = require("./config/database");
 
-// Don't forget to change database fle to change the database placeholder
 mongoose.connect(config.database);
 let db = mongoose.connection;
 
@@ -70,15 +70,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
 
-// Home Route
-// Set home route
-app.get("/", function(req, res) {
-  res.render("home");
-});
+app.use(cors());
 
-// Route Files
-let users = require("./routes/users");
-app.use("/users", users);
+// bring in routres
+require("./routes")(app);
 
 app.set("port", process.env.PORT || 8000);
 
