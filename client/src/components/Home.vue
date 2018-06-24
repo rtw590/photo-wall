@@ -1,13 +1,17 @@
 <template>
    <v-layout row wrap>
+      <button
+        @click="changeUsers">
+        Change User
+      </button>
       <v-flex d-flex xs12 sm6 md4>
         <v-card dark color="primary">
-          <v-card-text>one</v-card-text>
+          <v-card-text>{{user}}</v-card-text>
         </v-card>
       </v-flex>
       <v-flex d-flex xs12 sm6 md4>
         <v-card dark color="red">
-          <v-card-text>two</v-card-text>
+          <v-card-text>{{userFromState}}</v-card-text>
         </v-card>
       </v-flex>
       <v-flex d-flex xs12 sm12 md4>
@@ -26,12 +30,42 @@ import TestService from "@/services/TestService";
 export default {
   data() {
     return {
-      user: ""
+      user: "",
+      userFromState: ""
     };
+  },
+  methods: {
+    // TODO - Define Methods
+    // Can call getters here
+    // Users is called in the component, it then returns data from the store using a getter
+    // users() {
+    //   return this.$store.getters.unregistered
+    // }
+    // Can call mutations here
+    // This mutation would commit register and pass in the user.id payload
+    // registerUser(user) {
+    //   this.$store.commit('register', user.id);
+    // }
+    // Can call actions
+    // This action dispatched the register action, which fires the register mutation and includes the user.id payload
+    // registerUser(user) {
+    //   this.$store.dispatch("register", user.id);
+    // }
+
+    changeUsers() {
+      this.$store.dispatch("CHANGE_USERS");
+    }
+  },
+  computed: {
+    // TODO - Define computed
+    // Can call getters
   },
   async mounted() {
     //  request backnd for all the songs
-    this.user = (await TestService.index()).data;
+    this.user = "Rob";
+    // Maybe this way when using the store
+    //  request backnd for all the songs
+    this.$store.dispatch("GET_ALL_USERS");
   }
 };
 </script>

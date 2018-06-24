@@ -1,7 +1,7 @@
 module.exports = {
   index(req, res) {
     res.send({
-      user: "rtw590"
+      user: "catdog"
     });
   }
 };
