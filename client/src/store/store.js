@@ -17,15 +17,8 @@ export default new Vuex.Store({
     users: {},
     loggedIn: false
   },
+  // I've imported the getters, mutations, and actions from 3 other files
   getters,
-  // Getters are used in component's methods to get some information from the state rather than getting directly from the state
-  // Why? Because this code can be re-used throughout components
-  // It always returns something
   mutations,
-  // Mutations are methods that change the state directly, must be synchronous
-  // Can receive payload passed in from component or from action?
   actions
-  // Actions call mutations but handle the async parts
-  // Can receive a payload passed in from the component
-  // Can have same name as the mutation
 });

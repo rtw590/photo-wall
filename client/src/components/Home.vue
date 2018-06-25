@@ -6,33 +6,31 @@
       </button>
       <v-flex d-flex xs12 sm6 md4>
         <v-card dark color="primary">
-          <v-card-text>{{user}}</v-card-text>
+          <v-card-text>Test</v-card-text>
         </v-card>
       </v-flex>
       <v-flex d-flex xs12 sm6 md4>
         <v-card dark color="red">
-          <v-card-text>{{userFromState}}</v-card-text>
+          <v-card-text></v-card-text>
         </v-card>
       </v-flex>
       <v-flex d-flex xs12 sm12 md4>
         <v-card dark color="accent">
-          <v-card-text>three</v-card-text>
+          <v-card-text>
+            <span>
+              <h1>{{ users.user }}</h1>
+            </span>
+          </v-card-text>
         </v-card>
       </v-flex>
     </v-layout>
-    
-    <!-- <h2>{{user.user}}</h2> -->
 
 </template>
 
 <script>
-import TestService from "@/services/TestService";
 export default {
   data() {
-    return {
-      user: "",
-      userFromState: ""
-    };
+    return {};
   },
   methods: {
     // TODO - Define Methods
@@ -59,11 +57,11 @@ export default {
   computed: {
     // TODO - Define computed
     // Can call getters
+    users() {
+      return this.$store.getters.ALL_USERS;
+    }
   },
   async mounted() {
-    //  request backnd for all the songs
-    this.user = "Rob";
-    // Maybe this way when using the store
     //  request backnd for all the songs
     this.$store.dispatch("GET_ALL_USERS");
   }
