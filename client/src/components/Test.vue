@@ -7,6 +7,15 @@
   <h2 v-if="!$store.state.loggedIn">
     Nope
   </h2>
+  <h3>
+    {{$store.state.users.user}}
+  </h3>
+  <div 
+        v-for="post in posts" 
+        :key="post.id">
+    <h1>{{post.name}}</h1>
+    <h2>{{post.body}}</h2>
+  </div>
 </div>
 
 </template>
@@ -17,8 +26,14 @@ export default {
     return {};
   },
   methods: {},
-  computed: {},
-  mounted() {}
+  computed: {
+    posts() {
+      return this.$store.getters.ALL_POSTS;
+    }
+  },
+  mounted() {
+    this.$store.dispatch("GET_POSTS");
+  }
 };
 </script>
 

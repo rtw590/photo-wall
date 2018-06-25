@@ -8,5 +8,8 @@ export default {
   },
   LOGGED_IN(state) {
     return state.loggedIn;
+  },
+  ALL_POSTS(state) {
+    return state.posts;
   }
 };

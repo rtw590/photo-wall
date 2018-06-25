@@ -14,5 +14,25 @@ export default {
       user: "DogOfCats"
     };
     commit("CHANGE_USERS", users);
+  },
+  GET_POSTS({ commit }) {
+    let json = [
+      {
+        id: 1,
+        name: "Rob",
+        body: "This is my message"
+      },
+      {
+        id: 2,
+        name: "Waller",
+        body: "This is my Massage"
+      },
+      {
+        id: 3,
+        name: "Dan",
+        body: "Yo yo yo"
+      }
+    ];
+    commit("GET_POSTS", json);
   }
 };

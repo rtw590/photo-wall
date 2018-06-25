@@ -9,5 +9,8 @@ export default {
   },
   CHANGE_USERS(state, users) {
     state.users = users;
+  },
+  GET_POSTS(state, json) {
+    state.posts = json;
   }
 };
