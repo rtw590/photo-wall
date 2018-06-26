@@ -1,10 +1,5 @@
 <template>
    <v-layout row wrap>
-      <v-btn
-        color="success"
-        @click="changeUsers">
-        Change User
-      </v-btn>
       <v-flex d-flex xs12 sm6 md4>
         <v-card dark color="primary">
           <v-card-text>Test</v-card-text>

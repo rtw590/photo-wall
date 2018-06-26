@@ -1,22 +1,13 @@
 <template>
-<div>
-  <h1>Is the user logged in?</h1>
-  <h2 v-if="$store.state.loggedIn">
-    User is logged in
-  </h2>
-  <h2 v-if="!$store.state.loggedIn">
-    Nope
-  </h2>
-  <h3>
-    {{$store.state.users.user}}
-  </h3>
-  <div 
-        v-for="post in posts" 
-        :key="post.id">
-    <h1>{{post.name}}</h1>
-    <h2>{{post.body}}</h2>
-  </div>
-</div>
+   <v-layout row wrap>
+     
+      <v-flex d-flex xs12 sm6 md4 middle>
+        <v-card dark color="red">
+          <v-card-text>Test</v-card-text>
+        </v-card>
+      </v-flex>
+
+    </v-layout>
 
 </template>
 

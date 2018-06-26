@@ -2,6 +2,7 @@
   <div id="app">
     <!-- Wrapping in v-app required for vuetify -->
     <v-app>
+      <page-header />
       <main>
         <v-container fluid>
           <router-view/>
@@ -13,9 +14,13 @@
 
 <script>
 // Bring in componenet to use inside app
+import PageHeader from "@/components/Header.vue";
 
 export default {
-  name: "app"
+  name: "app",
+  components: {
+    PageHeader
+  }
 };
 </script>
 
