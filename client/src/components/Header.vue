@@ -53,7 +53,12 @@
         :to="{
                     name: 'home'
             }">Link Two</v-btn>
-      <v-btn flat>Link Three</v-btn>
+      <v-btn 
+        flat
+        :to="{
+                    name: 'register'
+            }">
+          Register</v-btn>
     </v-toolbar-items>
   </v-toolbar>
 </template>
@@ -64,7 +69,7 @@ export default {};
 
 <style scoped>
 .btn--router {
-  background-color: #2196f3 !important;
+  
 }
 </style>
 
