@@ -24,7 +24,7 @@
         </v-list-tile>
         <v-list-tile
           :to="{
-                    name: 'test'
+              name: 'test'
             }">
           <v-list-tile-title >
               Photo Wall
@@ -37,8 +37,8 @@
       <v-btn 
         flat
         :to="{
-                    name: 'home'
-            }">
+          name: 'home'
+        }">
           Home</v-btn>
 
     <v-spacer></v-spacer>
@@ -46,18 +46,18 @@
       <v-btn 
         flat
         :to="{
-                    name: 'test'
-            }">
+          name: 'test'
+        }">
           Link One</v-btn>
       <v-btn flat
         :to="{
-                    name: 'home'
-            }">Link Two</v-btn>
+          name: 'login'
+        }">Login</v-btn>
       <v-btn 
         flat
         :to="{
-                    name: 'register'
-            }">
+          name: 'register'
+        }">
           Register</v-btn>
     </v-toolbar-items>
   </v-toolbar>
@@ -69,7 +69,6 @@ export default {};
 
 <style scoped>
 .btn--router {
-  
 }
 </style>
 
