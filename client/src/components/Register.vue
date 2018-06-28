@@ -23,6 +23,7 @@
         v-model="username"
         label="Username"
         required
+        :rules="[rules.required]"
       ></v-text-field>
 
 
@@ -30,6 +31,7 @@
         v-model="email"
         label="Email"
         required
+        :rules="[rules.required]"
       ></v-text-field>
 
 
@@ -38,6 +40,7 @@
         label="Password"
         type="password"
         required
+        :rules="[rules.required]"
       ></v-text-field>
 
 
@@ -46,6 +49,7 @@
         label="Repeat Password"
         type="password"
         required
+        :rules="[rules.required]"
       ></v-text-field>
 
 
@@ -76,9 +80,12 @@ export default {
       password: "",
       password2: "",
       username: "",
-      errors: null
+      errors: null,
+
+      rules: {
+        required: value => !!value || "Required."
+      }
     };
-    required: value => !!value || "Required";
   },
   methods: {
     // Button has on click to call this function from AuthenticationService
