@@ -22,12 +22,14 @@
      <v-text-field
         v-model="username"
         label="Username"
+        required
       ></v-text-field>
 
 
       <v-text-field
         v-model="email"
         label="Email"
+        required
       ></v-text-field>
 
 
@@ -35,6 +37,7 @@
         v-model="password"
         label="Password"
         type="password"
+        required
       ></v-text-field>
 
 
@@ -42,6 +45,7 @@
         v-model="password2"
         label="Repeat Password"
         type="password"
+        required
       ></v-text-field>
 
 
@@ -74,6 +78,7 @@ export default {
       username: "",
       errors: null
     };
+    required: value => !!value || "Required";
   },
   methods: {
     // Button has on click to call this function from AuthenticationService
@@ -92,9 +97,11 @@ export default {
         // this.$store.dispatch("setUser", response.data.user);
 
         this.errors = response.data.errors;
-        // this.$router.push({
-        //   name: "home"
-        // });
+        if (this.errors == null) {
+          this.$router.push({
+            name: "home"
+          });
+        }
       } catch (error) {
         // this.error = error.response.data.error;
       }
