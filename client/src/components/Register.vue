@@ -1,22 +1,35 @@
 <template>
-   <div>
 
-     <!-- TODO: Make this a v-if and a v-for to loop through errors -->
-     <div v-html="error" class="error"></div>
+     <v-layout row wrap>
+       <v-flex d-flex xs0 sm3 md3 lg4>
+       </v-flex>
+      <v-flex d-flex xs12 sm6 md6 lg4>
+        <div class="white elevation-4">
 
+          <v-toolbar flat dense class="green" dark>
+          <!-- Using title for a 1 way binding. Can be defined in data or props -->
+          <v-toolbar-title>Register</v-toolbar-title>
+        </v-toolbar>
+
+        <div class="pl-4 pr-4 pb-4 pt-4">
+
+     <ul class="errors" center>
+      <li v-for="item in errors">
+        {{ item.msg }}
+      </li>
+      </ul>
+    
      <v-text-field
         v-model="username"
         label="Username"
       ></v-text-field>
 
-      <br>
 
       <v-text-field
         v-model="email"
         label="Email"
       ></v-text-field>
 
-      <br>
 
       <v-text-field
         v-model="password"
@@ -24,24 +37,28 @@
         type="password"
       ></v-text-field>
 
-      <br>
 
       <v-text-field
         v-model="password2"
-        label="Please Enter Your Password Again"
+        label="Repeat Password"
         type="password"
       ></v-text-field>
 
-      <br>
 
       <v-btn
       dark
       class="green"
+      style="width: 100%; margin: 0 auto;"
         @click="register">
         Register
       </v-btn>
+      </div>
+        </div>
+      </v-flex>
+      <v-flex d-flex xs0 sm3 md3 lg4>
+       </v-flex>
+     </v-layout>
 
-    </div>
 
 </template>
 
@@ -55,7 +72,7 @@ export default {
       password: "",
       password2: "",
       username: "",
-      error: null
+      errors: null
     };
   },
   methods: {
@@ -74,9 +91,7 @@ export default {
         // this.$store.dispatch("setToken", response.data.token);
         // this.$store.dispatch("setUser", response.data.user);
 
-        console.log(response);
-        console.log(response.data.errors);
-        this.error = response.data.errors;
+        this.errors = response.data.errors;
         // this.$router.push({
         //   name: "home"
         // });
@@ -90,4 +105,9 @@ export default {
 
 
 <style scoped>
+.errors {
+  list-style-type: none;
+  font-weight: 500;
+  color: red;
+}
 </style>
