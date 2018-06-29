@@ -14,8 +14,8 @@
         <div class="pl-4 pr-4 pb-4 pt-4">
 
      <ul class="errors" center>
-      <li v-for="item in errors">
-        {{ item.msg }}
+      <li>
+        {{ errors }}
       </li>
       </ul>
     
@@ -82,6 +82,10 @@ export default {
         // this.$store.dispatch("setUser", response.data.user);
 
         this.errors = response.data.errors;
+        let user = response.data.user;
+        let userId = response.data.userId;
+        console.log(user);
+        console.log(userId);
         if (this.errors == null) {
           this.$router.push({
             name: "home"
