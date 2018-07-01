@@ -77,16 +77,23 @@ export default {
           username: this.username,
           password: this.password
         });
-        // We call the setToken and setUser action that is from the store and we pass is the action name and the token/user
-        // this.$store.dispatch("setToken", response.data.token);
-        // this.$store.dispatch("setUser", response.data.user);
 
         this.errors = response.data.errors;
-        let user = response.data.user;
-        let userId = response.data.userId;
-        console.log(user);
-        console.log(userId);
+        // let user = response.data.user;
+        // let userId = response.data.userId;
+
+        // TODO Put inside if
+        // this.$store.dispatch("SET_LOGGED_IN_USER", user, userId);
+
         if (this.errors == null) {
+          // let user = response.data.user;
+          // let userId = response.data.userId.toString();
+          let user = {
+            user: response.data.user,
+            userId: response.data.userId
+          };
+          console.log(user);
+          this.$store.dispatch("SET_LOGGED_IN_USER", user);
           this.$router.push({
             name: "home"
           });
@@ -94,6 +101,10 @@ export default {
       } catch (error) {
         // this.error = error.response.data.error;
       }
+    },
+    setLoggedInUser() {
+      // this.$store.dispatch("SET_LOGGED_IN_USER", user, userId);
+      console.log("set user logged in ran");
     }
   }
 };

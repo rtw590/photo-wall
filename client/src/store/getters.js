@@ -3,13 +3,13 @@
 // It always returns something
 
 export default {
-  ALL_USERS(state) {
-    return state.users;
-  },
-  LOGGED_IN(state) {
-    return state.loggedIn;
-  },
-  ALL_POSTS(state) {
-    return state.posts;
-  }
+  // ALL_USERS(state) {
+  //   return state.users;
+  // },
+  // LOGGED_IN(state) {
+  //   return state.loggedIn;
+  // },
+  // ALL_POSTS(state) {
+  //   return state.posts;
+  // }
 };

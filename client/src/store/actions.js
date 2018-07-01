@@ -34,5 +34,9 @@ export default {
       }
     ];
     commit("GET_POSTS", json);
+  },
+  SET_LOGGED_IN_USER({ commit }, user) {
+    let loggedInUser = user;
+    commit("SET_LOGGED_IN_USER", loggedInUser);
   }
 };

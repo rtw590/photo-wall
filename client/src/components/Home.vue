@@ -45,22 +45,21 @@ export default {
     // registerUser(user) {
     //   this.$store.dispatch("register", user.id);
     // }
-
-    changeUsers() {
-      this.$store.dispatch("CHANGE_USERS");
-    }
+    // changeUsers() {
+    //   this.$store.dispatch("CHANGE_USERS");
+    // }
   },
   computed: {
     // TODO - Define computed
     // Can call getters
-    users() {
-      return this.$store.getters.ALL_USERS;
-    }
-  },
-  async mounted() {
-    //  request backnd for all the songs
-    this.$store.dispatch("GET_ALL_USERS");
+    // users() {
+    //   return this.$store.getters.ALL_USERS;
+    // }
   }
+  // async mounted() {
+  //   //  request backnd for all the songs
+  //   this.$store.dispatch("GET_ALL_USERS");
+  // }
 };
 </script>
 

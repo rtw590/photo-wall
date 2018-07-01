@@ -14,9 +14,9 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   // In state, set the items that will be needed throughout the app
   state: {
-    users: {},
-    loggedIn: false,
-    posts: {}
+    user: {},
+    loggedIn: false
+    // posts: {}
   },
   // I've imported the getters, mutations, and actions from 3 other files
   getters,

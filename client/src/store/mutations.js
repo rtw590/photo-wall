@@ -12,5 +12,9 @@ export default {
   },
   GET_POSTS(state, json) {
     state.posts = json;
+  },
+  SET_LOGGED_IN_USER(state, loggedInUser) {
+    state.user = loggedInUser;
+    state.loggedIn = true;
   }
 };
