@@ -38,5 +38,8 @@ export default {
   SET_LOGGED_IN_USER({ commit }, user) {
     let loggedInUser = user;
     commit("SET_LOGGED_IN_USER", loggedInUser);
+  },
+  LOGOUT({ commit }) {
+    commit("LOGOUT");
   }
 };

@@ -16,5 +16,9 @@ export default {
   SET_LOGGED_IN_USER(state, loggedInUser) {
     state.user = loggedInUser;
     state.loggedIn = true;
+  },
+  LOGOUT(state) {
+    state.user = {};
+    state.loggedIn = false;
   }
 };

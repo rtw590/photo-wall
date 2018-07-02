@@ -5,6 +5,7 @@
       <v-btn slot="activator" color="primary" dark>
         <v-toolbar-side-icon></v-toolbar-side-icon>
       </v-btn>
+      <!-- List for mobile navigation -->
       <v-list>
         <v-list-tile
           :to="{
@@ -42,29 +43,49 @@
           Home</v-btn>
 
     <v-spacer></v-spacer>
-    <v-toolbar-items class="hidden-sm-and-down">
-      <v-btn 
-        flat
-        :to="{
-          name: 'test'
-        }">
-          Link One</v-btn>
-      <v-btn flat
-        :to="{
-          name: 'login'
-        }">Login</v-btn>
-      <v-btn 
-        flat
-        :to="{
-          name: 'register'
-        }">
-          Register</v-btn>
-    </v-toolbar-items>
+
+    <div v-if="!$store.state.loggedIn">
+      <v-toolbar-items class="hidden-sm-and-down">
+        <v-btn 
+          flat
+          :to="{
+            name: 'test'
+          }">
+            Link One</v-btn>
+        <v-btn flat
+          :to="{
+            name: 'login'
+          }">Login</v-btn>
+        <v-btn 
+          flat
+          :to="{
+            name: 'register'
+          }">
+            Register</v-btn>
+      </v-toolbar-items>
+    </div>
+    <div v-if="$store.state.loggedIn">
+      <v-toolbar-items class="hidden-sm-and-down">
+        <v-btn 
+          flat
+          @click="logout">
+            Logout</v-btn>
+      </v-toolbar-items>
+    </div>
   </v-toolbar>
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    logout() {
+      this.$store.dispatch("LOGOUT");
+      this.$router.push({
+        name: "home"
+      });
+    }
+  }
+};
 </script>
 
 <style scoped>
