@@ -8,6 +8,11 @@ const session = require("express-session");
 const passport = require("passport");
 const config = require("./config/database");
 
+// Load dependencies for file uploading to DO
+const aws = require("aws-sdk");
+const multer = require("multer");
+const multerS3 = require("multer-s3");
+
 mongoose.connect(config.database);
 let db = mongoose.connection;
 
@@ -16,13 +21,33 @@ db.once("open", function() {
   console.log("Connected to Mongodb");
 });
 
-//Check for db errors
+// Check for db errors
 db.on("error", function(err) {
   console.log(err);
 });
 
 // Init the app
 const app = express();
+
+// Set S3 endpoint to DigitalOcean Spaces
+const spacesEndpoint = new aws.Endpoint("nyc3.digitaloceanspaces.com");
+const s3 = new aws.S3({
+  endpoint: spacesEndpoint
+});
+
+// Image upload middleware
+// Change bucket property to your Space name
+const upload = multer({
+  storage: multerS3({
+    s3: s3,
+    bucket: "1410",
+    acl: "public-read",
+    key: function(request, file, cb) {
+      console.log(file);
+      cb(null, file.originalname);
+    }
+  })
+}).array("upload", 1);
 
 // Express Session Middleware
 app.use(

@@ -28,7 +28,7 @@ export default {
       formData.append("file", this.file);
       // Make the request to the POST /single-file URL
       axios
-        .post("/upload", file, {
+        .post("/upload-test", file, {
           baseURL: "http://localhost:8000/"
           // headers: {
           //   "Content-Type": "multipart/form-data"

@@ -6,6 +6,7 @@ import Test from "./components/Test.vue";
 import Register from "./components/Register.vue";
 import Login from "./components/Login.vue";
 import Upload from "./components/Upload.vue";
+import UploadTest from "./components/Upload-Test.vue";
 
 Vue.use(Router);
 
@@ -35,6 +36,11 @@ export default new Router({
       path: "/upload",
       name: "upload",
       component: Upload
+    },
+    {
+      path: "/upload-test",
+      name: "upload-test",
+      component: UploadTest
     }
   ]
 });
