@@ -29,10 +29,10 @@ export default {
       // Make the request to the POST /single-file URL
       axios
         .post("/upload", file, {
-          baseURL: "http://localhost:8000/"
-          // headers: {
-          //   "Content-Type": "multipart/form-data"
-          // }
+          baseURL: "http://localhost:8000/",
+          headers: {
+            "Content-Type": "multipart/form-data"
+          }
         })
         .then(function() {
           console.log("SUCCESS!!");

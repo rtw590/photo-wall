@@ -7,6 +7,7 @@ import Register from "./components/Register.vue";
 import Login from "./components/Login.vue";
 import Upload from "./components/Upload.vue";
 import UploadTest from "./components/Upload-Test.vue";
+import UploadTestAcademind from "./components/Upload-Test-Academind.vue";
 
 Vue.use(Router);
 
@@ -41,6 +42,11 @@ export default new Router({
       path: "/upload-test",
       name: "upload-test",
       component: UploadTest
+    },
+    {
+      path: "/upload-test-academind",
+      name: "upload-test-academind",
+      component: UploadTestAcademind
     }
   ]
 });

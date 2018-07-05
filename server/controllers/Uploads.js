@@ -31,6 +31,7 @@ module.exports = {
         console.log(error);
         return res.redirect("/error");
       }
+      console.log(res);
       console.log("File uploaded successfully.");
       res.redirect("/success");
     });
