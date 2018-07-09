@@ -23,10 +23,17 @@ module.exports = app => {
   app.post("/upload", Uploads.index);
   app.post("/upload-test", UploadsTest.index);
   app.post("/upload-test-Academind", UploadsTestAcademind.index);
-  app.post("/single", upload.single("fileImage"), (req, res) => {
+  app.post("/single", (req, res) => {
     console.log("backend hit");
     console.log(req.body);
     console.log(req.file);
+    console.log(req.files);
+    console.log(req.body.fileImage);
+    console.log(req.body.fd);
+    console.log(req.body.file);
+    console.log(req.body.files);
     res.send();
   });
 };
+
+// app.post("/single", upload.single("fd"), (req, res)

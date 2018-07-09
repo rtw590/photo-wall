@@ -27,11 +27,8 @@ export default {
       const fd = new FormData();
       fd.append("image", this.selectedFile, this.selectedFile.name);
       console.log(fd);
-      axios.post("/single", fd, {
-        baseURL: "http://localhost:8000/",
-        headers: {
-          "Content-Type": "multipart/form-data"
-        }
+      axios.post("http://localhost:8000/single", fd, {}).then(res => {
+        console.log(res);
       });
     }
   }
