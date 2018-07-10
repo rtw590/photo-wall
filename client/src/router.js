@@ -8,6 +8,8 @@ import Login from "./components/Login.vue";
 import Upload from "./components/Upload.vue";
 import UploadTest from "./components/Upload-Test.vue";
 import UploadTestAcademind from "./components/Upload-Test-Academind.vue";
+import Feed from "./components/Feed.vue";
+import FeedWIP from "./components/FeedWIP.vue";
 
 Vue.use(Router);
 
@@ -47,6 +49,16 @@ export default new Router({
       path: "/upload-test-academind",
       name: "upload-test-academind",
       component: UploadTestAcademind
+    },
+    {
+      path: "/feed",
+      name: "feed",
+      component: Feed
+    },
+    {
+      path: "/feedWIP",
+      name: "feedWIP",
+      component: FeedWIP
     }
   ]
 });
