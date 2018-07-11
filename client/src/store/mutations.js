@@ -10,8 +10,8 @@ export default {
   CHANGE_USERS(state, users) {
     state.users = users;
   },
-  GET_POSTS(state, posts) {
-    state.posts = posts;
+  GET_POSTS(state, cardChunks) {
+    state.posts = cardChunks;
   },
   SET_LOGGED_IN_USER(state, loggedInUser) {
     state.user = loggedInUser;

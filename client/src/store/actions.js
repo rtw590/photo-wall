@@ -7,7 +7,12 @@ import Posts from "@/services/Posts";
 export default {
   async GET_POSTS({ commit }) {
     let posts = (await Posts.index()).data;
-    commit("GET_POSTS", posts);
+    let cardChunks = [];
+      let chunkSize = 3;
+      for (let i = 0; i < posts.length; i += chunkSize) {
+        cardChunks.push(posts.slice(i, i + chunkSize));
+      }
+    commit("GET_POSTS", cardChunks);
   },
   SET_LOGGED_IN_USER({ commit }, user) {
     let loggedInUser = user;
