@@ -2,17 +2,7 @@
   <v-layout column>
     <v-flex xs12 sm6>
 
-      <h1>Hi</h1>
-      <ul v-for="posts in cardsGrouped" :key="posts.title">
-        <li>Test 1</li>
-        <ul v-for="item in posts" :key="item.title">
-          <li v-text="item.title"></li>
-          <li>Test 2</li>
-        </ul>
-      </ul>
-
-
-
+      <h1>Hello</h1>
 
       <v-card>
         <v-container
@@ -21,13 +11,13 @@
         >
           <v-layout row wrap>
             <v-flex
-              v-for="card in cards"
-              v-bind="{ [`xs${card.flex}`]: true }"
-              :key="card.title"
+              v-for="post in $store.state.posts"
+              v-bind="{ [`xs${post.flex}`]: true }"
+              :key="post.title"
             >
               <v-card>
                 <v-card-media
-                  :src="card.src"
+                  :src="post.src"
                   height="200px"
                 >
                   <v-container
@@ -37,7 +27,7 @@
                   >
                     <v-layout fill-height>
                       <v-flex xs12 align-end flexbox>
-                        <span class="headline white--text" v-text="card.title"></span>
+                        <span class="headline white--text" v-text="post.title"></span>
                       </v-flex>
                     </v-layout>
                   </v-container>
@@ -68,29 +58,7 @@
 export default {
   data() {
     return {
-      cards: [
-        {
-          title: "My Friend",
-          src: "1.png"
-        },
-        {
-          title: "Catdog",
-          src: "1.png"
-        },
-        {
-          title: "Man o meen",
-          src: "1.png"
-        },
-        {
-          title: "My ",
-          src: "1.png"
-        },
-        {
-          title: "My Shoe",
-          src: "1.png"
-        }
-      ],
-      cardsSpread: []
+    
     };
   },
   methods: {},

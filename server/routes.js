@@ -1,7 +1,7 @@
 // Bring in any controllers
 // const AuthenticationController = require("./controllers/AuthenticationController");
 
-const TestController = require("./controllers/TestController");
+const Posts = require("./controllers/Posts");
 const RegisterUser = require("./controllers/RegisterUser");
 const UserStates = require("./controllers/UserStates");
 const Uploads = require("./controllers/Uploads");
@@ -17,7 +17,7 @@ let upload = multer({ storage: multer.memoryStorage() });
 const passport = require("passport");
 
 module.exports = app => {
-  app.get("/test", TestController.index);
+  app.get("/posts", Posts.index);
   app.post("/register", RegisterUser.register);
   app.post("/login", UserStates.login);
   app.post("/upload", Uploads.index);
