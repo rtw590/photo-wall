@@ -8,13 +8,45 @@
         v-for="posts in $store.state.posts"
         :key="posts.title">
 
-        <div
+        <v-card
           v-for="post in posts"
           :key="post.title">
-          <h1 v-text="post.title"></h1>
-        </div>
+                <v-card-media
+                  :src="post.src"
+                  height="200px"
+                >
+                  <v-container
+                    fill-height
+                    fluid
+                    pa-2
+                  >
+                    <v-layout fill-height>
+                      <v-flex xs12 align-end flexbox>
+                        <span class="headline white--text" v-text="post.title"></span>
+                      </v-flex>
+                    </v-layout>
+                  </v-container>
+                </v-card-media>
+
+                <v-card-actions>
+                  <v-spacer></v-spacer>
+                  <v-btn icon>
+                    <v-icon>favorite</v-icon>
+                  </v-btn>
+                  <v-btn icon>
+                    <v-icon>bookmark</v-icon>
+                  </v-btn>
+                  <v-btn icon>
+                    <v-icon>share</v-icon>
+                  </v-btn>
+                </v-card-actions>
+              </v-card>
         
       </div>
+
+
+
+    
 
     </v-flex>
   </v-layout>
@@ -23,14 +55,10 @@
 <script>
 export default {
   data() {
-    return {
-    
-    };
+    return {};
   },
   methods: {},
-  computed: {
-    
-  },
+  computed: {},
   mounted() {
     this.$store.dispatch("GET_POSTS");
   }
