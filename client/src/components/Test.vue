@@ -7,6 +7,18 @@
         </v-card>
       </v-flex>
 
+      <v-flex d-flex xs12 sm6 md4 middle>
+        <v-card dark color="blue">
+          <v-card-text>Test</v-card-text>
+        </v-card>
+      </v-flex>
+
+      <v-flex d-flex xs12 sm6 md4 middle>
+        <v-card dark color="green">
+          <v-card-text>Test</v-card-text>
+        </v-card>
+      </v-flex>
+
     </v-layout>
 
 </template>
