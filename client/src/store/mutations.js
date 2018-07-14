@@ -13,6 +13,12 @@ export default {
   GET_POSTS(state, cardChunks) {
     state.posts = cardChunks;
   },
+  CLEAR_POSTS(state) {
+    state.posts = [];
+  },
+  GET_POST(state, singlePost) {
+    state.post = singlePost;
+  },
   SET_LOGGED_IN_USER(state, loggedInUser) {
     state.user = loggedInUser;
     state.loggedIn = true;

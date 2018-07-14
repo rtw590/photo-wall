@@ -14,11 +14,18 @@ export default {
     }
     commit("GET_POSTS", cardChunks);
   },
+  CLEAR_POSTS({ commit }) {
+    commit("CLEAR_POSTS");
+  },
   SET_LOGGED_IN_USER({ commit }, user) {
     let loggedInUser = user;
     commit("SET_LOGGED_IN_USER", loggedInUser);
   },
   LOGOUT({ commit }) {
     commit("LOGOUT");
+  },
+  async GET_POST({ commit }, postId) {
+    let singlePost = (await Posts.singlePost(postId)).data;
+    commit("GET_POST", singlePost);
   }
 };

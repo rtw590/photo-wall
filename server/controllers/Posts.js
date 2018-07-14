@@ -27,5 +27,12 @@ module.exports = {
         src: "1.png"
       }
     ]);
+  },
+  singlePost(req, res) {
+    console.log("backend hit");
+    res.send({
+      title: "My Friend",
+      src: "1.png"
+    });
   }
 };

@@ -10,6 +10,7 @@ import UploadTest from "./components/Upload-Test.vue";
 import UploadTestAcademind from "./components/Upload-Test-Academind.vue";
 import Feed from "./components/Feed.vue";
 import FeedWIP from "./components/FeedWIP.vue";
+import ViewPost from "./components/ViewPost.vue";
 
 Vue.use(Router);
 
@@ -59,6 +60,11 @@ export default new Router({
       path: "/feedWIP",
       name: "feedWIP",
       component: FeedWIP
+    },
+    {
+      path: "/posts/:postId",
+      name: "post",
+      component: ViewPost
     }
   ]
 });

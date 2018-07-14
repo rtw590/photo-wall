@@ -4,5 +4,8 @@ export default {
   // You can call this function in other files by using TestService.index
   index() {
     return Api().get("posts");
+  },
+  singlePost(postId) {
+    return Api().get(`post/${postId}`);
   }
 };
