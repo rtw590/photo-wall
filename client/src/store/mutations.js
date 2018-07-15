@@ -26,5 +26,8 @@ export default {
   LOGOUT(state) {
     state.user = {};
     state.loggedIn = false;
+  },
+  VIEW_POST(state, singlePost) {
+    state.post = singlePost;
   }
 };

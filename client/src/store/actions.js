@@ -24,8 +24,14 @@ export default {
   LOGOUT({ commit }) {
     commit("LOGOUT");
   },
-  async GET_POST({ commit }, postId) {
-    let singlePost = (await Posts.singlePost(postId)).data;
+  GET_POST({ commit }) {
+    // let singlePost = (await Posts.singlePost(postId)).data;
+    let singlePost = { title: cat, user: bigCat };
     commit("GET_POST", singlePost);
+  },
+  async VIEW_POST({ commit }, postId) {
+    // let singlePost = (await Posts.singlePost(postId)).data;
+    let singlePost = await postId;
+    commit("VIEW_POST", singlePost);
   }
 };

@@ -25,11 +25,9 @@ export default {
   methods: {},
   computed: {},
   mounted() {
-    console.log("mounted happened");
-    this.$store.dispatch("CLEAR_POSTS");
-    // let postId = this.$store.state.route.params.postId;
-    // this.$store.dispatch("GET_POST", postId);
-    // console.log("after everything runs");
+    // this.$store.dispatch("CLEAR_POSTS");
+    let postId = this.$store.state.route.params.postId;
+    this.$store.dispatch("VIEW_POST", postId);
   }
 };
 </script>
