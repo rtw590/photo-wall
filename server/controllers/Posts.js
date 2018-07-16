@@ -50,8 +50,6 @@ module.exports = {
     ]);
   },
   singlePost(req, res) {
-    console.log("backend hit");
-    console.log(req.params.postId);
     res.send({
       title: "My Friend",
       src: "lebron.png",
