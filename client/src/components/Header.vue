@@ -49,9 +49,9 @@
         <v-btn 
           flat
           :to="{
-            name: 'test'
+            name: 'feedWIP'
           }">
-            Link One</v-btn>
+            Feed</v-btn>
         <v-btn flat
           :to="{
             name: 'login'

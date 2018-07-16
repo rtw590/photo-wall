@@ -18,7 +18,7 @@ const passport = require("passport");
 
 module.exports = app => {
   app.get("/posts", Posts.index);
-  app.get("/posts:postId", Posts.singlePost);
+  app.get("/post/:postId", Posts.singlePost);
   app.post("/register", RegisterUser.register);
   app.post("/login", UserStates.login);
   app.post("/upload", Uploads.index);

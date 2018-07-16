@@ -34,7 +34,15 @@
                 </v-card-media>
 
                 <v-card-actions>
-                  <v-btn dark color=green>
+                  <v-btn 
+                    :to="{
+                      name: 'post',
+                      params: {
+                          postId: post._id
+                          }
+                    }"
+                    color=green
+                    dark>
                     View Image
                   </v-btn>
                   <v-spacer></v-spacer>

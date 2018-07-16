@@ -30,8 +30,10 @@ export default {
     commit("GET_POST", singlePost);
   },
   async VIEW_POST({ commit }, postId) {
-    // let singlePost = (await Posts.singlePost(postId)).data;
-    let singlePost = await postId;
+    console.log(`This is in action and this is the postId ${postId}`);
+    let singlePost = (await Posts.singlePost(postId)).data;
+    console.log(`This is in action and this is singlePost ${singlePost}`);
+    // let singlePost = await postId;
     commit("VIEW_POST", singlePost);
   }
 };
