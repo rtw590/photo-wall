@@ -38,5 +38,8 @@ export default {
     console.log(`This is in action and this is singlePost ${singlePost}`);
     // let singlePost = await postId;
     commit("VIEW_POST", singlePost);
+  },
+  LOADING_TRUE({ commit }) {
+    commit("LOADING_TRUE");
   }
 };

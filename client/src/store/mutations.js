@@ -11,6 +11,7 @@ export default {
     state.users = users;
   },
   GET_POSTS(state, cardChunks) {
+    state.loading = false;
     state.posts = cardChunks;
   },
   CLEAR_POSTS(state) {
@@ -20,6 +21,7 @@ export default {
     state.post = {};
   },
   GET_POST(state, singlePost) {
+    state.loading = false;
     state.post = singlePost;
   },
   SET_LOGGED_IN_USER(state, loggedInUser) {
@@ -31,6 +33,13 @@ export default {
     state.loggedIn = false;
   },
   VIEW_POST(state, singlePost) {
+    state.loading = false;
     state.post = singlePost;
+  },
+  LOADING_TRUE(state) {
+    state.loading = true;
+  },
+  LOADING_FALSE(state) {
+    state.loading = false;
   }
 };

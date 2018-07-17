@@ -8,6 +8,13 @@
           height="200px"></v-card-media>
         </v-card> -->
 
+        <v-container
+          v-if="$store.state.loading">
+          <div style="margin: 0 auto; text-align: center;">
+            <img src="spinner.gif" alt="" style="height: 130px;">
+          </div>
+        </v-container>
+
         <img :src="$store.state.post.src" alt="" style="width:100%">
 
 
@@ -57,6 +64,7 @@ export default {
   computed: {},
   mounted() {
     this.$store.dispatch("CLEAR_POSTS");
+    this.$store.dispatch("LOADING_TRUE");
     let postId = this.$store.state.route.params.postId;
     console.log(`This is in mounted and this is the postId ${postId}`);
     this.$store.dispatch("VIEW_POST", postId);

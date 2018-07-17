@@ -12,12 +12,10 @@ module.exports = {
     });
   },
   singlePost(req, res) {
-    console.log(req.params.postId);
     Post.findById(req.params.postId, function(err, post) {
       if (err) {
         console.log(err);
       } else {
-        console.log(post);
         res.send(post);
       }
     });

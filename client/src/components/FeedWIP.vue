@@ -1,5 +1,11 @@
 <template>
     <div>
+        <v-container
+          v-if="$store.state.loading">
+          <div style="margin: 0 auto; text-align: center;">
+            <img src="spinner.gif" alt="" style="height: 130px;">
+          </div>
+        </v-container>
         <v-layout
         row 
         wrap
@@ -71,6 +77,7 @@ export default {
   methods: {},
   computed: {},
   mounted() {
+    this.$store.dispatch("LOADING_TRUE");
     this.$store.dispatch("CLEAR_POST");
     this.$store.dispatch("GET_POSTS");
   }

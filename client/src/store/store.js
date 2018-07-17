@@ -17,7 +17,8 @@ export default new Vuex.Store({
     user: {},
     loggedIn: false,
     posts: [],
-    post: {}
+    post: {},
+    loading: false
   },
   // I've imported the getters, mutations, and actions from 3 other files
   getters,
