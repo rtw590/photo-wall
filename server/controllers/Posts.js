@@ -7,32 +7,19 @@ module.exports = {
       if (err) {
         console.log(err);
       } else {
-        console.log(posts);
         res.send(posts);
       }
     });
   },
   singlePost(req, res) {
-    res.send({
-      title: "My Friend",
-      src: "lebron.png",
-      _id: 1,
-      likes: 5,
-      comments: [
-        {
-          user: "Mike",
-          body: "This is mikes comment"
-        },
-        {
-          user: "Dan",
-          body:
-            "This is dan comment. Dan just could not shutup about this picture. He loved it so much and thinks it is cool"
-        },
-        {
-          user: "Smith",
-          body: "This is Smiths comment"
-        }
-      ]
+    console.log(req.params.postId);
+    Post.findById(req.params.postId, function(err, post) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(post);
+        res.send(post);
+      }
     });
   },
   add(req, res) {
@@ -40,16 +27,16 @@ module.exports = {
     const likes = 0;
     const comments = [
       {
-        user: "dan",
-        body: "Do you understand the words that are coming out of my mouth"
+        user: "Bat",
+        body: "Man"
       },
       {
-        user: "rob",
-        body: "Meeeooowwww"
+        user: "God",
+        body: "I am the I am"
       },
       {
-        user: "The Rock",
-        body: "Do you smell what I am cooking?"
+        user: "Yuuuooooppp",
+        body: "Ice cream"
       }
     ];
 

@@ -71,6 +71,7 @@ export default {
   methods: {},
   computed: {},
   mounted() {
+    this.$store.dispatch("CLEAR_POST");
     this.$store.dispatch("GET_POSTS");
   }
 };

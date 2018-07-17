@@ -16,6 +16,9 @@ export default {
   CLEAR_POSTS(state) {
     state.posts = [];
   },
+  CLEAR_POST(state) {
+    state.post = {};
+  },
   GET_POST(state, singlePost) {
     state.post = singlePost;
   },

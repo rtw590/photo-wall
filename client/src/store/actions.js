@@ -17,6 +17,9 @@ export default {
   CLEAR_POSTS({ commit }) {
     commit("CLEAR_POSTS");
   },
+  CLEAR_POST({ commit }) {
+    commit("CLEAR_POST");
+  },
   SET_LOGGED_IN_USER({ commit }, user) {
     let loggedInUser = user;
     commit("SET_LOGGED_IN_USER", loggedInUser);
