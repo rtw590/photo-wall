@@ -8,7 +8,12 @@ const PostSchema = mongoose.Schema({
   likes: {
     type: Number
   },
-  comments: []
+  likedBy: [],
+  comments: [],
+  date: {
+    type: Date,
+    default: Date.now
+  }
 });
 
 const User = (module.exports = mongoose.model("Post", PostSchema));

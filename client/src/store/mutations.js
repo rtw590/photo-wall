@@ -24,6 +24,10 @@ export default {
     state.loading = false;
     state.post = singlePost;
   },
+  // LIKE_POST(state, postId) {
+  //   console.log("Like post ran in mutation");
+  //   console.log(postId);
+  // },
   SET_LOGGED_IN_USER(state, loggedInUser) {
     state.user = loggedInUser;
     state.loggedIn = true;

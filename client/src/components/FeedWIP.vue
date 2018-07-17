@@ -52,14 +52,11 @@
                     View Image
                   </v-btn>
                   <v-spacer></v-spacer>
-                  <v-btn icon>
+                  <v-btn 
+                    icon
+                    @click="likePost(post._id, $store.state.user.userId)">
                     <v-icon>favorite</v-icon>
-                  </v-btn>
-                  <v-btn icon>
-                    <v-icon>bookmark</v-icon>
-                  </v-btn>
-                  <v-btn icon>
-                    <v-icon>share</v-icon>
+                    <span v-text="post.likes"> </span>
                   </v-btn>
                 </v-card-actions>
         </v-card>
@@ -70,11 +67,18 @@
 </template>
 
 <script>
+import Posts from "@/services/Posts";
 export default {
   data() {
     return {};
   },
-  methods: {},
+  methods: {
+    async likePost(postId, userId) {
+      console.log(postId);
+      console.log(userId);
+      (await Posts.like(postId, userId)).data;
+    }
+  },
   computed: {},
   mounted() {
     this.$store.dispatch("LOADING_TRUE");

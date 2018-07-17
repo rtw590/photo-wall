@@ -20,6 +20,7 @@ module.exports = app => {
   app.get("/posts", Posts.index);
   app.post("/add", Posts.add);
   app.get("/post/:postId", Posts.singlePost);
+  app.get("/like/:postId/:userId", Posts.like);
   app.post("/register", RegisterUser.register);
   app.post("/login", UserStates.login);
   app.post("/upload", Uploads.index);

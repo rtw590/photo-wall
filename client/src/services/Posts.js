@@ -7,5 +7,8 @@ export default {
   },
   singlePost(postId) {
     return Api().get(`post/${postId}`);
+  },
+  like(postId, userId) {
+    return Api().get(`like/${postId}/${userId}`);
   }
 };

@@ -68,6 +68,13 @@
       <v-toolbar-items class="hidden-sm-and-down">
         <v-btn 
           flat
+          :to="{
+            name: 'feedWIP'
+          }">
+            Feed
+          </v-btn>
+        <v-btn 
+          flat
           @click="logout">
             Logout</v-btn>
       </v-toolbar-items>

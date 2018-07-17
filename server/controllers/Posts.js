@@ -23,6 +23,7 @@ module.exports = {
   add(req, res) {
     const src = req.body.src;
     const likes = 0;
+    const likedBy = [];
     const comments = [
       {
         user: "Bat",
@@ -52,7 +53,8 @@ module.exports = {
       let newPost = new Post({
         src,
         likes,
-        comments
+        comments,
+        likedBy
       });
 
       newPost.save(function(err) {
@@ -68,5 +70,15 @@ module.exports = {
         }
       });
     }
+  },
+  async like(req, res) {
+    await Post.findById(req.params.postId, function(err, post) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(post);
+        res.status(400);
+      }
+    });
   }
 };

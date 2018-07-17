@@ -32,6 +32,11 @@ export default {
     let singlePost = { title: cat, user: bigCat };
     commit("GET_POST", singlePost);
   },
+  // LIKE_POST({ commit }, postId) {
+  //   console.log("Like post in action ran");
+  //   console.log(postId);
+  //   commit("LIKE_POST", postId);
+  // },
   async VIEW_POST({ commit }, postId) {
     console.log(`This is in action and this is the postId ${postId}`);
     let singlePost = (await Posts.singlePost(postId)).data;
