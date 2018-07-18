@@ -76,8 +76,20 @@ module.exports = {
       if (err) {
         console.log(err);
       } else {
-        console.log(post);
-        res.status(400);
+        if (post.likedBy.includes(req.params.userId)) {
+          filteredArray = post.likedBy.filter(
+            item => item !== req.params.userId.toString()
+          );
+          post.likedBy = filteredArray;
+          post.likes -= 1;
+          post.save();
+          res.status(400);
+        } else {
+          post.likedBy.push(req.params.userId.toString());
+          post.likes += 1;
+          post.save();
+          res.status(400);
+        }
       }
     });
   }

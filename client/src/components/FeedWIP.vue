@@ -54,7 +54,7 @@
                   <v-spacer></v-spacer>
                   <v-btn 
                     icon
-                    @click="likePost(post._id, $store.state.user.userId)">
+                    @click="likePost(post._id, $store.state.user.userId), clearAndGetPosts()">
                     <v-icon>favorite</v-icon>
                     <span v-text="post.likes"> </span>
                   </v-btn>
@@ -74,9 +74,14 @@ export default {
   },
   methods: {
     async likePost(postId, userId) {
-      console.log(postId);
-      console.log(userId);
       (await Posts.like(postId, userId)).data;
+      await console.log("code after await ran");
+    },
+    clearAndGetPosts() {
+      console.log("clearpost function ran");
+      this.$store.dispatch("CLEAR_POSTS");
+      this.$store.dispatch("LOADING_TRUE");
+      this.$store.dispatch("GET_POSTS");
     }
   },
   computed: {},
