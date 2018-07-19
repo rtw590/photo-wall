@@ -25,7 +25,8 @@
           <v-card-text>
             <v-btn
             color=red
-            dark>
+            dark
+            @click="likePost($store.state.post._id, $store.state.user.userId)">
             <v-icon
               large
               color="white"
@@ -40,6 +41,12 @@
             COMMENT
             </v-btn>
             <br>
+          <div
+            v-if="$store.state.loading">
+            <div style="margin: 0 auto; text-align: center;">
+              <img src="spinner.gif" alt="" style="height: 130px;">
+            </div>
+          </div>
           <div
             v-for="comment in $store.state.post.comments"
             :key="comment.title">
@@ -56,11 +63,20 @@
 </template>
 
 <script>
+import Posts from "@/services/Posts";
 export default {
   data() {
     return {};
   },
-  methods: {},
+  methods: {
+    async likePost(postId, userId) {
+      (await Posts.like(postId, userId)).data;
+      console.log("code after await ran");
+      this.$store.dispatch("CLEAR_POST");
+      this.$store.dispatch("LOADING_TRUE");
+      this.$store.dispatch("VIEW_POST", this.$store.state.route.params.postId);
+    }
+  },
   computed: {},
   mounted() {
     this.$store.dispatch("CLEAR_POSTS");

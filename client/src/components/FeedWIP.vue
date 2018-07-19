@@ -79,12 +79,6 @@ export default {
       this.$store.dispatch("CLEAR_POSTS");
       this.$store.dispatch("LOADING_TRUE");
       this.$store.dispatch("GET_POSTS");
-    },
-    clearAndGetPosts() {
-      console.log("clearpost function ran");
-      this.$store.dispatch("CLEAR_POSTS");
-      this.$store.dispatch("LOADING_TRUE");
-      this.$store.dispatch("GET_POSTS");
     }
   },
   computed: {},
