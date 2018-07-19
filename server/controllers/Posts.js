@@ -83,12 +83,12 @@ module.exports = {
           post.likedBy = filteredArray;
           post.likes -= 1;
           post.save();
-          res.status(400);
+          res.send(post);
         } else {
           post.likedBy.push(req.params.userId.toString());
           post.likes += 1;
           post.save();
-          res.status(400);
+          res.send(post);
         }
       }
     });
