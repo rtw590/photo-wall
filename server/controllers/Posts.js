@@ -92,5 +92,22 @@ module.exports = {
         }
       }
     });
+  },
+  async postComment(req, res) {
+    const { username, userId, postId, comment } = req.body;
+    await Post.findById(postId, function(err, post) {
+      if (err) {
+        console.log(err);
+      } else {
+        post.comments.push({
+          user: username,
+          userId: userId,
+          body: comment
+        });
+          post.save();
+          res.send(post);
+      }
+    });
   }
 };
+

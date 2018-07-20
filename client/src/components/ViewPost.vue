@@ -25,6 +25,7 @@
           <v-card-text>
             <v-btn
             color=red
+            style="border-radius: 5px;"
             dark
             @click="likePost($store.state.post._id, $store.state.user.userId)">
             <v-icon
@@ -34,11 +35,6 @@
               favorite
             </v-icon>
             <h1 v-text="$store.state.post.likes"></h1>
-            </v-btn>
-            <v-btn
-            color=blue
-            dark>
-            COMMENT
             </v-btn>
             <br>
           <div
@@ -53,6 +49,29 @@
             <b><span v-text="comment.user"></span>: </b>
             <span v-text="comment.body"></span>
           </div>
+
+          <v-layout row wrap style="background-color: #f2f2f2; border-radius: 5px; padding: 5px;">
+     
+            <v-flex d-flex xs12 sm12 md9>
+              <v-text-field
+                v-model="comment"
+                label="Comment"
+              ></v-text-field>
+            </v-flex>
+            <v-flex d-flex xs12 sm12 md3>
+              <v-btn
+                dark
+                class="green"
+                style="width: 100%;"
+                  @click="postComment">
+                  Post
+              </v-btn>
+            </v-flex>
+          </v-layout>
+
+
+
+
           </v-card-text>
 
         </v-card>
@@ -66,7 +85,9 @@
 import Posts from "@/services/Posts";
 export default {
   data() {
-    return {};
+    return {
+      comment: "",
+    };
   },
   methods: {
     async likePost(postId, userId) {
@@ -75,6 +96,23 @@ export default {
       this.$store.dispatch("CLEAR_POST");
       this.$store.dispatch("LOADING_TRUE");
       this.$store.dispatch("VIEW_POST", this.$store.state.route.params.postId);
+    },
+    async postComment() {
+      try {
+        await Posts.postComment({
+          // the backend will receive this information
+          username: this.$store.state.user.user,
+          userId: this.$store.state.user.userId,
+          postId: this.$store.state.route.params.postId,
+          comment: this.comment
+        })
+        this.comment = ''
+        this.$store.dispatch("CLEAR_POST");
+        this.$store.dispatch("LOADING_TRUE");
+        this.$store.dispatch("VIEW_POST", this.$store.state.route.params.postId);
+      } catch (error) {
+        // this.error = error.response.data.error;
+      }
     }
   },
   computed: {},

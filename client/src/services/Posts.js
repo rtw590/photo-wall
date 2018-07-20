@@ -10,5 +10,8 @@ export default {
   },
   like(postId, userId) {
     return Api().get(`like/${postId}/${userId}`);
+  },
+  postComment(postDetails) {
+    return Api().post("postComment", postDetails);
   }
 };
