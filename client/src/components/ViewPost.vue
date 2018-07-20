@@ -91,11 +91,10 @@ export default {
   },
   methods: {
     async likePost(postId, userId) {
-      (await Posts.like(postId, userId)).data;
-      console.log("code after await ran");
-      this.$store.dispatch("CLEAR_POST");
-      this.$store.dispatch("LOADING_TRUE");
-      this.$store.dispatch("VIEW_POST", this.$store.state.route.params.postId);
+      (await Posts.like(postId, userId)).data
+      this.$store.dispatch("CLEAR_POST")
+      this.$store.dispatch("LOADING_TRUE")
+      this.$store.dispatch("VIEW_POST", this.$store.state.route.params.postId)
     },
     async postComment() {
       try {

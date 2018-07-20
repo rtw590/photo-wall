@@ -1,5 +1,7 @@
 <template>
     <div>
+      <h1 v-text="$store.state.user.user" style="text-align: center"></h1>
+      <h2 style="text-align: center">Followers  <span> / </span>  Following</h2>
         <v-container
           v-if="$store.state.loading">
           <div style="margin: 0 auto; text-align: center;">

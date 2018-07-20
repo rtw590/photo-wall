@@ -73,6 +73,12 @@
           }">
             Feed
           </v-btn>
+          <v-btn 
+          flat
+          :to="{
+            name: 'profile'
+          }">
+            Profile</v-btn>
         <v-btn 
           flat
           @click="logout">
