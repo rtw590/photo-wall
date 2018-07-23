@@ -1,5 +1,6 @@
 // Bring in user model
 let Post = require("../models/post");
+let User = require("../models/user");
 
 module.exports = {
   index(req, res) {
@@ -10,6 +11,24 @@ module.exports = {
         res.send(posts);
       }
     });
+  },
+  profile(req, res) {
+    console.log("profile backend hit");
+    Post.find(
+      {
+        postedBy: req.params.username
+      },
+      null,
+      { sort: "-date" },
+      function(err, posts) {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log(posts);
+          res.send(posts);
+        }
+      }
+    );
   },
   singlePost(req, res) {
     Post.findById(req.params.postId, function(err, post) {
@@ -22,6 +41,7 @@ module.exports = {
   },
   add(req, res) {
     const src = req.body.src;
+    const postedBy = "lebron";
     const likes = 0;
     const likedBy = [];
     const comments = [
@@ -52,6 +72,7 @@ module.exports = {
     } else {
       let newPost = new Post({
         src,
+        postedBy,
         likes,
         comments,
         likedBy
@@ -104,10 +125,57 @@ module.exports = {
           userId: userId,
           body: comment
         });
-          post.save();
-          res.send(post);
+        post.save();
+        res.send(post);
+      }
+    });
+  },
+  follow(req, res) {
+    // Find logged in user
+    User.findById(req.params.userId, function(err, user) {
+      if (err) {
+        console.log(err);
+      } else {
+        // If already following...
+        if (user.following.includes(req.params.pageOn)) {
+          filteredArray = user.following.filter(
+            item => item !== req.params.pageOn.toString()
+          );
+          user.following = filteredArray;
+          user.save();
+
+          // Remove the follower from the user whose page we are on
+          User.findOne({ username: req.params.pageOn }, function(err, user2) {
+            if (err) {
+              console.log(err);
+            } else {
+              console.log(`found user of page on ${user2}`);
+              filteredArray = user2.followedBy.filter(
+                item => item !== user.username
+              );
+              user2.followedBy = filteredArray;
+              user2.save();
+            }
+          });
+
+          res.send(user);
+          // Else not already following
+        } else {
+          user.following.push(req.params.pageOn.toString());
+          user.save();
+
+          // Add the follower from the user whose page we are on
+          User.findOne({ username: req.params.pageOn }, function(err, user2) {
+            if (err) {
+              console.log(err);
+            } else {
+              user2.followedBy.push(user.username.toString());
+              user2.save();
+            }
+          });
+          res.send(user);
+        }
       }
     });
   }
 };
-

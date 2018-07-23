@@ -13,5 +13,11 @@ export default {
   },
   postComment(postDetails) {
     return Api().post("postComment", postDetails);
+  },
+  profile(username) {
+    return Api().get(`profile/${username}`);
+  },
+  follow(pageOn, userId) {
+    return Api().get(`follow/${pageOn}/${userId}`);
   }
 };

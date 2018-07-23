@@ -48,7 +48,7 @@
           </router-link>
 
                 <v-card-actions>
-                  <h5>Posted by: <span v-text="post.username"></span></h5>
+                  <h5>Posted by: <span v-text="post.postedBy"></span></h5>
                   <v-spacer></v-spacer>
                   <v-btn 
                     icon
@@ -72,10 +72,10 @@ export default {
   },
   methods: {
     async likePost(postId, userId) {
-      (await Posts.like(postId, userId)).data
-      this.$store.dispatch("CLEAR_POSTS")
-      this.$store.dispatch("LOADING_TRUE")
-      this.$store.dispatch("GET_POSTS")
+      (await Posts.like(postId, userId)).data;
+      this.$store.dispatch("CLEAR_POSTS");
+      this.$store.dispatch("LOADING_TRUE");
+      this.$store.dispatch("GET_POSTS");
     }
   },
   computed: {},

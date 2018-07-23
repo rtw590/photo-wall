@@ -32,7 +32,9 @@ module.exports = {
       let newUser = new User({
         username: username,
         email: email,
-        password: password
+        password: password,
+        following: [],
+        followedBy: []
       });
 
       bcrypt.genSalt(10, function(err, salt) {

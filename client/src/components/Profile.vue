@@ -1,7 +1,26 @@
 <template>
     <div>
-      <h1 v-text="$store.state.user.user" style="text-align: center"></h1>
+      <h1 v-text="$store.state.route.params.username" style="text-align: center"></h1>
       <h2 style="text-align: center">Followers  <span> / </span>  Following</h2>
+      <div v-if="$store.state.route.params.username == $store.state.user.user" style="text-align: center;" >
+        
+      </div>
+      <div v-else-if="!this.following" style="text-align: center;" >
+        <v-btn
+          dark
+          color=green
+          @click="follow($store.state.route.params.username, $store.state.user.userId)">
+          Follow
+        </v-btn>
+      </div>
+      <div v-else-if="this.following" style="text-align: center;" >
+        <v-btn
+          dark
+          color=red
+          @click="follow($store.state.route.params.username, $store.state.user.userId)">
+          Unfollow
+        </v-btn>
+      </div>
         <v-container
           v-if="$store.state.loading">
           <div style="margin: 0 auto; text-align: center;">
@@ -50,7 +69,7 @@
           </router-link>
 
                 <v-card-actions>
-                  <h5>Posted by: <span v-text="post.username"></span></h5>
+                  <!-- <h5>Posted by: <span v-text="post.postedBy"></span></h5> -->
                   <v-spacer></v-spacer>
                   <v-btn 
                     icon
@@ -70,21 +89,30 @@
 import Posts from "@/services/Posts";
 export default {
   data() {
-    return {};
+    return {
+      following: false
+    };
   },
   methods: {
     async likePost(postId, userId) {
-      (await Posts.like(postId, userId)).data
-      this.$store.dispatch("CLEAR_POSTS")
-      this.$store.dispatch("LOADING_TRUE")
-      this.$store.dispatch("GET_POSTS")
+      (await Posts.like(postId, userId)).data;
+      this.$store.dispatch("CLEAR_PROFILE");
+      this.$store.dispatch("LOADING_TRUE");
+      let username = this.$store.state.route.params.username;
+      this.$store.dispatch("GET_PROFILE", username);
+    },
+    async follow(pageOn, userId) {
+      (await Posts.follow(pageOn, userId)).data;
     }
   },
   computed: {},
   mounted() {
     this.$store.dispatch("LOADING_TRUE");
     this.$store.dispatch("CLEAR_POST");
-    this.$store.dispatch("GET_POSTS");
+    this.$store.dispatch("CLEAR_POSTS");
+    this.$store.dispatch("CLEAR_PROFILE");
+    let username = this.$store.state.route.params.username;
+    this.$store.dispatch("GET_PROFILE", username);
   }
 };
 </script>

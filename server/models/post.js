@@ -5,6 +5,7 @@ const PostSchema = mongoose.Schema({
   src: {
     type: String
   },
+  postedBy: String,
   likes: {
     type: Number
   },

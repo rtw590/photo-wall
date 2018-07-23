@@ -46,5 +46,17 @@ export default {
   },
   LOADING_TRUE({ commit }) {
     commit("LOADING_TRUE");
+  },
+  async GET_PROFILE({ commit }, username) {
+    let profile = (await Posts.profile(username)).data;
+    let cardChunks = [];
+    let chunkSize = 4;
+    for (let i = 0; i < profile.length; i += chunkSize) {
+      cardChunks.push(profile.slice(i, i + chunkSize));
+    }
+    commit("GET_PROFILE", cardChunks);
+  },
+  CLEAR_PROFILE({ commit }) {
+    commit("CLEAR_PROFILE");
   }
 };

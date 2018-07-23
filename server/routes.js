@@ -18,8 +18,10 @@ const passport = require("passport");
 
 module.exports = app => {
   app.get("/posts", Posts.index);
+  app.get("/profile/:username", Posts.profile);
   app.post("/add", Posts.add);
   app.get("/post/:postId", Posts.singlePost);
+  app.get("/follow/:pageOn/:userId", Posts.follow);
   app.get("/like/:postId/:userId", Posts.like);
   app.post("/postComment", Posts.postComment);
   app.post("/register", RegisterUser.register);

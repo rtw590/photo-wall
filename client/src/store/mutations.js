@@ -45,5 +45,12 @@ export default {
   },
   LOADING_FALSE(state) {
     state.loading = false;
+  },
+  GET_PROFILE(state, cardChunks) {
+    state.loading = false;
+    state.posts = cardChunks;
+  },
+  CLEAR_PROFILE(state) {
+    state.posts = [];
   }
 };

@@ -68,7 +68,7 @@ export default new Router({
       component: ViewPost
     },
     {
-      path: "/profile",
+      path: "/profile/:username",
       name: "profile",
       component: Profile
     }
