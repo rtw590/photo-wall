@@ -29,7 +29,9 @@ module.exports = {
         if (isMatch) {
           return res.send({
             user: user.username,
-            userId: user._id
+            userId: user._id,
+            following: user.following,
+            followedBy: user.followedBy
           });
         } else {
           return res.send({

@@ -5,20 +5,20 @@
       <div v-if="$store.state.route.params.username == $store.state.user.user" style="text-align: center;" >
         
       </div>
-      <div v-else-if="!this.following" style="text-align: center;" >
-        <v-btn
-          dark
-          color=green
-          @click="follow($store.state.route.params.username, $store.state.user.userId)">
-          Follow
-        </v-btn>
-      </div>
-      <div v-else-if="this.following" style="text-align: center;" >
+      <div v-else-if="{following} == true" style="text-align: center;" >
         <v-btn
           dark
           color=red
           @click="follow($store.state.route.params.username, $store.state.user.userId)">
           Unfollow
+        </v-btn>
+      </div>
+      <div v-else-if="{following} == false" style="text-align: center;" >
+        <v-btn
+          dark
+          color=green
+          @click="follow($store.state.route.params.username, $store.state.user.userId)">
+          Follow
         </v-btn>
       </div>
         <v-container
@@ -90,8 +90,21 @@ import Posts from "@/services/Posts";
 export default {
   data() {
     return {
-      following: false
+      // following: false
     };
+  },
+  computed: {
+    following: function() {
+      if (
+        this.$store.state.user.following.includes(
+          this.$store.state.route.params.username
+        )
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    }
   },
   methods: {
     async likePost(postId, userId) {

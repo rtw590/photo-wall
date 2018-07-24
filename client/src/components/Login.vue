@@ -78,6 +78,8 @@ export default {
           password: this.password
         });
 
+        console.log(response.data);
+
         this.errors = response.data.errors;
         // let user = response.data.user;
         // let userId = response.data.userId;
@@ -90,7 +92,9 @@ export default {
           // let userId = response.data.userId.toString();
           let user = {
             user: response.data.user,
-            userId: response.data.userId
+            userId: response.data.userId,
+            following: response.data.following,
+            followedBy: response.data.followedBy
           };
           console.log(user);
           this.$store.dispatch("SET_LOGGED_IN_USER", user);
