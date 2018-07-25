@@ -2,7 +2,23 @@
     <div>
       <h1 v-text="$store.state.route.params.username" style="text-align: center"></h1>
       <h2 style="text-align: center">Followers  <span> / </span>  Following</h2>
-      <div v-if="$store.state.route.params.username == $store.state.user.user" style="text-align: center;" >
+      <div v-bind:class="{ hide: !following }" style="text-align: center;" >
+        <v-btn
+          dark
+          color=red
+          @click="follow($store.state.route.params.username, $store.state.user.userId)">
+          Unfollow
+        </v-btn>
+      </div>
+      <div v-bind:class="{ hide: following }" style="text-align: center;" >
+        <v-btn
+          dark
+          color=green
+          @click="follow($store.state.route.params.username, $store.state.user.userId)">
+          Follow
+        </v-btn>
+      </div>
+      <!-- <div v-if="$store.state.route.params.username == $store.state.user.user" style="text-align: center;" >
         
       </div>
       <div v-else-if="this.following == true" style="text-align: center;" >
@@ -20,7 +36,7 @@
           @click="follow($store.state.route.params.username, $store.state.user.userId)">
           Follow
         </v-btn>
-      </div>
+      </div> -->
         <v-container
           v-if="$store.state.loading">
           <div style="margin: 0 auto; text-align: center;">
@@ -117,6 +133,15 @@ export default {
       let following = (await Posts.followingOrNot(username, loggedInUsername))
         .data;
       this.following = following;
+      this.changeFollowing(following);
+    },
+    changeFollowing(following) {
+      console.log("change following method ran");
+      if (following == true) {
+        this.following = true;
+      } else {
+        this.following = false;
+      }
     }
   },
   computed: {},
@@ -140,4 +165,7 @@ export default {
 
 
 <style scoped>
+.hide {
+  display: none;
+}
 </style>
