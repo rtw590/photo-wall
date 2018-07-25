@@ -5,7 +5,7 @@
       <div v-if="$store.state.route.params.username == $store.state.user.user" style="text-align: center;" >
         
       </div>
-      <div v-else-if="{following} == true" style="text-align: center;" >
+      <div v-else-if="this.following == true" style="text-align: center;" >
         <v-btn
           dark
           color=red
@@ -13,7 +13,7 @@
           Unfollow
         </v-btn>
       </div>
-      <div v-else-if="{following} == false" style="text-align: center;" >
+      <div v-else-if="this.following == false" style="text-align: center;" >
         <v-btn
           dark
           color=green
@@ -90,21 +90,17 @@ import Posts from "@/services/Posts";
 export default {
   data() {
     return {
-      // following: false
+      following: false
     };
   },
   computed: {
-    following: function() {
-      if (
-        this.$store.state.user.following.includes(
-          this.$store.state.route.params.username
-        )
-      ) {
-        return true;
-      } else {
-        return false;
-      }
-    }
+    // async followingOrNot() {
+    //   let username = this.$store.state.route.params.username;
+    //   let loggedInUsername = this.$store.state.user.user;
+    //   let following = (await Posts.followingOrNot(username, loggedInUsername))
+    //     .data;
+    //   console.log(following);
+    // }
   },
   methods: {
     async likePost(postId, userId) {
@@ -116,16 +112,28 @@ export default {
     },
     async follow(pageOn, userId) {
       (await Posts.follow(pageOn, userId)).data;
+      let username = this.$store.state.route.params.username;
+      let loggedInUsername = this.$store.state.user.user;
+      let following = (await Posts.followingOrNot(username, loggedInUsername))
+        .data;
+      this.following = following;
     }
   },
   computed: {},
-  mounted() {
+  async mounted() {
     this.$store.dispatch("LOADING_TRUE");
     this.$store.dispatch("CLEAR_POST");
     this.$store.dispatch("CLEAR_POSTS");
     this.$store.dispatch("CLEAR_PROFILE");
+    let profileInformation = {};
+    profileInformation.username = this.$store.state.route.params.username;
+    profileInformation.loggedInUsername = this.$store.state.user.user;
+    this.$store.dispatch("GET_PROFILE", profileInformation);
     let username = this.$store.state.route.params.username;
-    this.$store.dispatch("GET_PROFILE", username);
+    let loggedInUsername = this.$store.state.user.user;
+    let following = (await Posts.followingOrNot(username, loggedInUsername))
+      .data;
+    this.following = following;
   }
 };
 </script>

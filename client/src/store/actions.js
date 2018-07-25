@@ -47,8 +47,10 @@ export default {
   LOADING_TRUE({ commit }) {
     commit("LOADING_TRUE");
   },
-  async GET_PROFILE({ commit }, username) {
-    let profile = (await Posts.profile(username)).data;
+  async GET_PROFILE({ commit }, profileInformation) {
+    let username = profileInformation.username;
+    let loggedInUsername = profileInformation.loggedInUsername;
+    let profile = (await Posts.profile(username, loggedInUsername)).data;
     let cardChunks = [];
     let chunkSize = 4;
     for (let i = 0; i < profile.length; i += chunkSize) {

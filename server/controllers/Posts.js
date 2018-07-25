@@ -14,6 +14,7 @@ module.exports = {
   },
   profile(req, res) {
     console.log("profile backend hit");
+    console.log(req.params.loggedInUsername);
     Post.find(
       {
         postedBy: req.params.username
@@ -24,8 +25,38 @@ module.exports = {
         if (err) {
           console.log(err);
         } else {
-          console.log(posts);
+          // let following = false;
+          // if (req.user != undefined) {
+          //   following = userProfile.followedBy.includes(
+          //     req.user._id.toString()
+          //   );
+          // }
           res.send(posts);
+        }
+      }
+    );
+  },
+  followingOrNot(req, res) {
+    console.log("profile backend hit");
+    console.log(req.params.loggedInUsername);
+    User.findOne(
+      {
+        username: req.params.username
+      },
+      // null,
+      // { sort: "-date" },
+      function(err, user) {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log("this console log is on the followingOrNot");
+          let following = false;
+          if (req.params.loggedInUsername != undefined) {
+            following = user.followedBy.includes(
+              req.params.loggedInUsername.toString()
+            );
+          }
+          res.send(following);
         }
       }
     );

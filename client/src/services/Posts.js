@@ -14,8 +14,11 @@ export default {
   postComment(postDetails) {
     return Api().post("postComment", postDetails);
   },
-  profile(username) {
-    return Api().get(`profile/${username}`);
+  profile(username, loggedInUsername) {
+    return Api().get(`profile/${username}/${loggedInUsername}`);
+  },
+  followingOrNot(username, loggedInUsername) {
+    return Api().get(`followingOrNot/${username}/${loggedInUsername}`);
   },
   follow(pageOn, userId) {
     return Api().get(`follow/${pageOn}/${userId}`);

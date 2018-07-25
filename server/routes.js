@@ -18,7 +18,8 @@ const passport = require("passport");
 
 module.exports = app => {
   app.get("/posts", Posts.index);
-  app.get("/profile/:username", Posts.profile);
+  app.get("/profile/:username/:loggedInUsername", Posts.profile);
+  app.get("/followingOrNot/:username/:loggedInUsername", Posts.followingOrNot);
   app.post("/add", Posts.add);
   app.get("/post/:postId", Posts.singlePost);
   app.get("/follow/:pageOn/:userId", Posts.follow);
