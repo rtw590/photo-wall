@@ -1,23 +1,27 @@
 <template>
     <div>
       <h1 v-text="$store.state.route.params.username" style="text-align: center"></h1>
-      <h2 style="text-align: center">Followers  <span> / </span>  Following</h2>
-      <!-- <div v-bind:class="{ hide: !following }" style="text-align: center;" >
-        <v-btn
-          dark
-          color=red
-          @click="follow($store.state.route.params.username, $store.state.user.userId)">
-          Unfollow
-        </v-btn>
-      </div>
-      <div v-bind:class="{ hide: following }" style="text-align: center;" >
-        <v-btn
-          dark
-          color=green
-          @click="follow($store.state.route.params.username, $store.state.user.userId)">
-          Follow
-        </v-btn>
-      </div> -->
+      <h2 style="text-align: center">
+        <router-link
+          :to="{
+            name: 'followers',
+            params: {
+                username: $store.state.route.params.username
+                }
+          }">
+          Followers
+        </router-link>
+          <span> / </span>  
+        <router-link
+          :to="{
+            name: 'following',
+            params: {
+                username: $store.state.route.params.username
+                }
+          }">
+          Following
+        </router-link>
+      </h2>
       <div v-if="$store.state.route.params.username == $store.state.user.user" style="text-align: center;" >
         
       </div>

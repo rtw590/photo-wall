@@ -12,6 +12,8 @@ import Feed from "./components/Feed.vue";
 import FeedWIP from "./components/FeedWIP.vue";
 import ViewPost from "./components/ViewPost.vue";
 import Profile from "./components/Profile.vue";
+import Following from "./components/Following.vue";
+import Followers from "./components/Followers.vue";
 
 Vue.use(Router);
 
@@ -71,6 +73,16 @@ export default new Router({
       path: "/profile/:username",
       name: "profile",
       component: Profile
+    },
+    {
+      path: "/following/:username",
+      name: "following",
+      component: Following
+    },
+    {
+      path: "/followers/:username",
+      name: "followers",
+      component: Followers
     }
   ]
 });
