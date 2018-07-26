@@ -60,5 +60,12 @@ export default {
   },
   CLEAR_PROFILE({ commit }) {
     commit("CLEAR_PROFILE");
+  },
+  CHANGE_FOLLOWING({ commit }, following) {
+    let followingOrNot = following;
+    commit("CHANGE_FOLLOWING", followingOrNot);
+  },
+  CLEAR_FOLLOWING({ commit }) {
+    commit("CLEAR_FOLLOWING");
   }
 };

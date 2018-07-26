@@ -52,5 +52,11 @@ export default {
   },
   CLEAR_PROFILE(state) {
     state.posts = [];
+  },
+  CHANGE_FOLLOWING(state, followingOrNot) {
+    state.following = followingOrNot;
+  },
+  CLEAR_FOLLOWING(state) {
+    state.following = false;
   }
 };

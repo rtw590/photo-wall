@@ -76,7 +76,10 @@
           <v-btn 
           flat
           :to="{
-            name: 'profile'
+            name: 'profile',
+            params: {
+                username: $store.state.user.user
+                }
           }">
             Profile</v-btn>
         <v-btn 

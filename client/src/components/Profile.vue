@@ -2,7 +2,7 @@
     <div>
       <h1 v-text="$store.state.route.params.username" style="text-align: center"></h1>
       <h2 style="text-align: center">Followers  <span> / </span>  Following</h2>
-      <div v-bind:class="{ hide: !following }" style="text-align: center;" >
+      <!-- <div v-bind:class="{ hide: !following }" style="text-align: center;" >
         <v-btn
           dark
           color=red
@@ -17,11 +17,11 @@
           @click="follow($store.state.route.params.username, $store.state.user.userId)">
           Follow
         </v-btn>
-      </div>
-      <!-- <div v-if="$store.state.route.params.username == $store.state.user.user" style="text-align: center;" >
+      </div> -->
+      <div v-if="$store.state.route.params.username == $store.state.user.user" style="text-align: center;" >
         
       </div>
-      <div v-else-if="this.following == true" style="text-align: center;" >
+      <div v-else-if="$store.state.following == true" style="text-align: center;" >
         <v-btn
           dark
           color=red
@@ -29,14 +29,14 @@
           Unfollow
         </v-btn>
       </div>
-      <div v-else-if="this.following == false" style="text-align: center;" >
+      <div v-else-if="$store.state.following == false" style="text-align: center;" >
         <v-btn
           dark
           color=green
           @click="follow($store.state.route.params.username, $store.state.user.userId)">
           Follow
         </v-btn>
-      </div> -->
+      </div>
         <v-container
           v-if="$store.state.loading">
           <div style="margin: 0 auto; text-align: center;">
@@ -127,22 +127,24 @@ export default {
       this.$store.dispatch("GET_PROFILE", username);
     },
     async follow(pageOn, userId) {
+      this.$store.dispatch("CLEAR_FOLLOWING");
       (await Posts.follow(pageOn, userId)).data;
       let username = this.$store.state.route.params.username;
       let loggedInUsername = this.$store.state.user.user;
       let following = (await Posts.followingOrNot(username, loggedInUsername))
         .data;
       this.following = following;
-      this.changeFollowing(following);
-    },
-    changeFollowing(following) {
-      console.log("change following method ran");
-      if (following == true) {
-        this.following = true;
-      } else {
-        this.following = false;
-      }
+      // this.changeFollowing(following);
+      this.$store.dispatch("CHANGE_FOLLOWING", following);
     }
+    // changeFollowing(following) {
+    //   console.log("change following method ran");
+    //   if (following == true) {
+    //     this.following = true;
+    //   } else {
+    //     this.following = false;
+    //   }
+    // }
   },
   computed: {},
   async mounted() {
@@ -150,6 +152,7 @@ export default {
     this.$store.dispatch("CLEAR_POST");
     this.$store.dispatch("CLEAR_POSTS");
     this.$store.dispatch("CLEAR_PROFILE");
+    this.$store.dispatch("CLEAR_FOLLOWING");
     let profileInformation = {};
     profileInformation.username = this.$store.state.route.params.username;
     profileInformation.loggedInUsername = this.$store.state.user.user;
@@ -158,7 +161,8 @@ export default {
     let loggedInUsername = this.$store.state.user.user;
     let following = (await Posts.followingOrNot(username, loggedInUsername))
       .data;
-    this.following = following;
+    // this.following = following;
+    this.$store.dispatch("CHANGE_FOLLOWING", following);
   }
 };
 </script>
