@@ -19,7 +19,8 @@ export default new Vuex.Store({
     posts: [],
     post: {},
     loading: false,
-    following: false
+    following: false,
+    followersList: []
   },
   // I've imported the getters, mutations, and actions from 3 other files
   getters,

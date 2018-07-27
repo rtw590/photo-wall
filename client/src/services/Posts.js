@@ -22,5 +22,8 @@ export default {
   },
   follow(pageOn, userId) {
     return Api().get(`follow/${pageOn}/${userId}`);
+  },
+  followers(pageOn, username) {
+    return Api().get(`followers/${pageOn}/${username}`);
   }
 };

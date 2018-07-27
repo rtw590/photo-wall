@@ -109,9 +109,7 @@
 import Posts from "@/services/Posts";
 export default {
   data() {
-    return {
-      following: false
-    };
+    return {};
   },
   computed: {
     // async followingOrNot() {
@@ -131,24 +129,19 @@ export default {
       this.$store.dispatch("GET_PROFILE", username);
     },
     async follow(pageOn, userId) {
-      this.$store.dispatch("CLEAR_FOLLOWING");
+      // this.$store.dispatch("CLEAR_FOLLOWING");
       (await Posts.follow(pageOn, userId)).data;
       let username = this.$store.state.route.params.username;
       let loggedInUsername = this.$store.state.user.user;
       let following = (await Posts.followingOrNot(username, loggedInUsername))
         .data;
-      this.following = following;
-      // this.changeFollowing(following);
+      if (following == true) {
+        following = false;
+      } else {
+        following = true;
+      }
       this.$store.dispatch("CHANGE_FOLLOWING", following);
     }
-    // changeFollowing(following) {
-    //   console.log("change following method ran");
-    //   if (following == true) {
-    //     this.following = true;
-    //   } else {
-    //     this.following = false;
-    //   }
-    // }
   },
   computed: {},
   async mounted() {
@@ -157,6 +150,7 @@ export default {
     this.$store.dispatch("CLEAR_POSTS");
     this.$store.dispatch("CLEAR_PROFILE");
     this.$store.dispatch("CLEAR_FOLLOWING");
+    this.$store.dispatch("CLEAR_FOLLOWERS");
     let profileInformation = {};
     profileInformation.username = this.$store.state.route.params.username;
     profileInformation.loggedInUsername = this.$store.state.user.user;
@@ -165,7 +159,6 @@ export default {
     let loggedInUsername = this.$store.state.user.user;
     let following = (await Posts.followingOrNot(username, loggedInUsername))
       .data;
-    // this.following = following;
     this.$store.dispatch("CHANGE_FOLLOWING", following);
   }
 };

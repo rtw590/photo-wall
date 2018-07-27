@@ -67,5 +67,14 @@ export default {
   },
   CLEAR_FOLLOWING({ commit }) {
     commit("CLEAR_FOLLOWING");
+  },
+  CLEAR_FOLLOWERS({ commit }) {
+    commit("CLEAR_FOLLOWERS");
+  },
+  async GET_FOLLOWERS({ commit }, bothUsers) {
+    let pageOn = bothUsers.pageOn;
+    let username = bothUsers.username;
+    let followers = (await Posts.followers(pageOn, username)).data;
+    commit("GET_FOLLOWERS", followers);
   }
 };

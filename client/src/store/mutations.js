@@ -58,5 +58,12 @@ export default {
   },
   CLEAR_FOLLOWING(state) {
     state.following = false;
+  },
+  CLEAR_FOLLOWERS(state) {
+    state.followersList = [];
+  },
+  GET_FOLLOWERS(state, followers) {
+    state.loading = false;
+    state.followersList = followers;
   }
 };
